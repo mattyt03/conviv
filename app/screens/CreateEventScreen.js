@@ -22,7 +22,7 @@ const validationSchema = Yup.object().shape({
   date: Yup.string().required().min(1).max(10000).label("Date"),
   location: Yup.string().required().min(1).max(10000).label("Location"),
   description: Yup.string().label("Description"),
-  category: Yup.string().required().nullable().label("Category"),
+  category: Yup.object().required().nullable().label("Category"),
   image: Yup.string().required().nullable().label("Image"),
 });
 

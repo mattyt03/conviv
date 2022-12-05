@@ -3,11 +3,14 @@ import React from 'react'
 import Slider from '@react-native-community/slider';
 import colors from '../config/colors';
 import AppText from './AppText';
+import Blink from './Blink';
 
 export default function AppSlider({title, ...otherProps}) {
   return (
     <View style={styles.container}>
-      <AppText style={styles.title}>{title}</AppText>
+      <Blink duration={1000}>
+        <AppText style={styles.title}>{title}</AppText>
+      </Blink>
       <Slider
           style={{width: '75%', height: 10}}
           // how do you set a predefined value
@@ -15,7 +18,7 @@ export default function AppSlider({title, ...otherProps}) {
           maximumValue={1}
           minimumTrackTintColor={colors.secondary}
           // make this lighter
-          maximumTrackTintColor={colors.lightBlack}
+          maximumTrackTintColor={colors.darkSecondary}
           {...otherProps}
       />
     </View>
@@ -27,7 +30,9 @@ const styles = StyleSheet.create({
     marginTop: 15
   },
   title: {
+    color: colors.secondary,
     fontWeight: 'bold',
+    // textTransform: 'uppercase',
     fontSize: 20,
     marginBottom: 10,
   },

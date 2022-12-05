@@ -23,6 +23,7 @@ export default function EventList({initialEvents, finalEvents, detailsPage}) {
                     description={item.description}
                     location={item.location}
                     host={item.host}
+                    profileImage={item.profileImage}
                     tunrout={item.turnout}
                     image={item.image}
                     onPress={() => navigation.navigate(detailsPage, item)}

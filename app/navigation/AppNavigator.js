@@ -1,7 +1,7 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import CreateEventScreen from '../screens/CreateEventScreen'
-import FeedNavigator from './FeedNavigator';
+import EventNavigator from './EventNavigator';
 import ProfileNavigator from './ProfileNavigator'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import NewEventButton from './NewEventButton'
@@ -25,7 +25,7 @@ const AppNavigator = () => (
     >
         <Tab.Screen 
             name='Feed' 
-            component={FeedNavigator}
+            component={EventNavigator}
             options={{
                 tabBarIcon: ({color, size}) => 
                     <MaterialCommunityIcons name='home' color={color} size={35}/>

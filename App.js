@@ -8,6 +8,9 @@ import AppNavigator from './app/navigation/AppNavigator';
 import NavigationTheme from './app/navigation/NavigationTheme';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Screen from './app/components/Screen';
+import {LogBox} from 'react-native'
+
+LogBox.ignoreAllLogs();
 
 export default function App() {
   return (

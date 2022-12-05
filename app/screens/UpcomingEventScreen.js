@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import React, {useState} from 'react'
 import AppText from '../components/AppText'
 import colors from '../config/colors'
 import AppButton from '../components/AppButton';
@@ -10,9 +10,12 @@ import { ImageHeaderScrollView, TriggeringView } from 'react-native-image-header
 
 export default function UpcomingEventScreen({route, navigation}) {
   const event = route.params;
+  const [rsvps, setRsvps] = useState(117);
+  const [buttonTitle, setButtonTitle] = useState('RSVP');
+
   return (
     <ImageHeaderScrollView
-      maxHeight={300}
+      maxHeight={350}
       minHeight={0}
       headerImage={event.image}
       renderTouchableFixedForeground={() => (
@@ -24,9 +27,12 @@ export default function UpcomingEventScreen({route, navigation}) {
     >
       <View style={styles.detailsContainer}>
         <AppText style={styles.title}>{event.title}</AppText>
-        <View style={styles.dateContainer}>
-          <MaterialCommunityIcons name={'calendar'} size={32} color={colors.secondary} style={styles.icon}/>
-          <AppText style={styles.date}>{event.date}</AppText>
+        <View style={styles.dateAndRSVPContainer}> 
+          <View style={styles.dateContainer}>
+            <MaterialCommunityIcons name={'calendar'} size={32} color={colors.secondary} style={styles.icon}/>
+            <AppText style={styles.date}>{event.date}</AppText>
+          </View>
+          <AppText style={styles.date}>{rsvps} RSVPs</AppText>
         </View>
         <View style={styles.descriptionContainer}>
           <AppText style={styles.text}>{event.description}</AppText>
@@ -43,11 +49,12 @@ export default function UpcomingEventScreen({route, navigation}) {
             <AppText style={styles.details}>{event.location}</AppText>
           </View>
         </View>
-        <View style={styles.descriptionContainer}>
+        <View style={styles.hostContainer}>
           <AppText style={styles.text}>Hosted by {event.host}</AppText>
+          <Image source={event.profileImage} style={styles.profileImage}/>
         </View>
         <View style={styles.buttonContainer}>
-          <AppButton title={'RSVP'} onPress={() => console.log("RSVP")}/>
+          <AppButton title={buttonTitle} onPress={() => {setRsvps(118); setButtonTitle('Cancel RSVP')}}/>
         </View>
       </View>
     </ImageHeaderScrollView>
@@ -65,7 +72,6 @@ const styles = StyleSheet.create({
       fontSize: 20,
     },
     dateContainer: {
-      marginTop: 15,
       flexDirection: 'row',
       alignItems: 'center'
     },
@@ -88,8 +94,6 @@ const styles = StyleSheet.create({
       justifyContent: 'space-between'
     },
     text: {
-        width: '100%',
-        // fontWeight: 'bold',
         fontSize: 20,
     },
     title: {
@@ -100,7 +104,7 @@ const styles = StyleSheet.create({
     },
     descriptionContainer: {
       marginTop: 15,
-      alignItems: 'center',
+      // alignItems: 'center',
     },
     icon: {
       marginRight: 5,
@@ -117,5 +121,22 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       marginLeft: 20,
       marginTop: 50,
+    },
+    hostContainer: {
+      marginTop: 15,
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    profileImage: {
+      marginLeft: 10,
+      height: 40,
+      width: 40,
+      borderRadius: 20,
+    },
+    dateAndRSVPContainer: {
+      marginTop: 15,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center'
     },
 })
